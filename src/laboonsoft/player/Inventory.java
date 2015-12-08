@@ -27,17 +27,22 @@ public class Inventory
 
 	public boolean hasCream()
 	{
-		return items.contains(Item.Type.CREAM);
+		return items.contains(new Item(Item.Type.CREAM));
 	}
 
 	public boolean hasSugar()
 	{
-		return items.contains(Item.Type.SUGAR);
+		return items.contains(new Item(Item.Type.SUGAR));
 	}
 
 	public boolean hasCoffee()
 	{
-		return items.contains(Item.Type.COFFEE);
+		return items.contains(new Item(Item.Type.COFFEE));
+	}
+
+	public boolean hasNone()
+	{
+		return !hasCream() && !hasSugar() && !hasCoffee();
 	}
 
 	public boolean hasAll()

@@ -1,6 +1,7 @@
 package laboonsoft.system;
 
 import laboonsoft.player.Item;
+import laboonsoft.player.Item.Type;
 
 public class Room
 {
@@ -17,9 +18,9 @@ public class Room
 		furnishing = furn;
 	}
 
-	public void addItem(Item item)
+	public void addItem(Type type)
 	{
-		this.item = item;
+		this.item = new Item(type);
 	}
 
 	public Item search()
@@ -45,7 +46,7 @@ public class Room
 
 	public String toString()
 	{
-		return "You enter a " + adjective + " room with " + furnishing + ".";
+		return "You are in a " + adjective + " room with " + furnishing + ".";
 	}
 
 	public Room goNorth()

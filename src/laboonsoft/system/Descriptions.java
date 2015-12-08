@@ -9,26 +9,76 @@ import java.util.Set;
 
 public class Descriptions
 {
-	String[] adjectives = { "zany", "awful", "putrescent", "gormless",
+	public static final String[] adjectives = { "zany", "awful", "dusty",
+			"unassuming", "bright", "ghoulish", "putrescent", "gormless",
 			"half-baked", "melty", "small", "bourgeois", "insignificant",
 			"lonely", "tasty" };
-	String[] furnishings = { "an incredible chair", "a light-absorbing lamp",
-			"a chair named Tracy", "some kind of thing",
+	public static final String[] furnishings = { "an incredible chair",
+			"a light-absorbing lamp", "a chair named Tracy",
+			"some kind of thing",
 			"a human skeleton that looks really disappointed" };
-	Set<String> usedAdjectives = new HashSet<String>();
-	Set<String> usedFurnishings = new HashSet<String>();
 
-	public String getAdjective(Random random)
+	public static String nonUniqueError = "NON-UNIQUE";
+	static Set<String> usedAdjectives = new HashSet<String>();
+	static Set<String> usedFurnishings = new HashSet<String>();
+	static int adjectivesGenerated = 0;
+	static int furnishingsGenerated = 0;
+
+	public static String getAdjective(Random random)
 	{
-		String adj = adjectives[random.nextInt(adjectives.length)];
-		usedAdjectives.add(adj);
+		boolean adjectiveChosen = false;
+		String adj = null;
+		while (!adjectiveChosen)
+		{
+			adj = adjectives[random.nextInt(adjectives.length)];
+			if (usedAdjectives.add(adj))
+			{
+				// if this was a new adjective, we can quit
+				// otherwise we'll go through the loop again
+				adjectiveChosen = true;
+			}
+			else
+			{
+				if (adjectivesGenerated > adjectives.length)
+				{
+					// we ran out of adjectives
+					adj = nonUniqueError;
+					break;
+				}
+			}
+
+		}
+
+		adjectivesGenerated++;
 		return adj;
 	}
 
-	public String getFurnishing(Random random)
+	public static String getFurnishing(Random random)
 	{
-		String furn = adjectives[random.nextInt(furnishings.length)];
-		usedFurnishings.add(furn);
+		boolean furnishingChosen = false;
+		String furn = null;
+		while (!furnishingChosen)
+		{
+			furn = furnishings[random.nextInt(furnishings.length)];
+			if (usedFurnishings.add(furn))
+			{
+				// if this was a new furnishing, we can quit
+				// otherwise we'll go through the loop again
+				furnishingChosen = true;
+			}
+			else
+			{
+				if (furnishingsGenerated > furnishings.length)
+				{
+					// we ran out of furnishings
+					furn = nonUniqueError;
+					break;
+				}
+			}
+
+		}
+
+		furnishingsGenerated++;
 		return furn;
 	}
 }
