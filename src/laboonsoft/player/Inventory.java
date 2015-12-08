@@ -12,6 +12,14 @@ public class Inventory
 		items = new ArrayList<Item>();
 	}
 
+	// an alternative version of addItem that
+	// allows you to input a Type instead
+	// of an instantiated Item
+	public boolean addItem(Item.Type type)
+	{
+		return addItem(new Item(type));
+	}
+
 	public boolean addItem(Item item)
 	{
 		if (!items.contains(item))

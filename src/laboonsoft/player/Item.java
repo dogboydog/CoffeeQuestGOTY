@@ -14,6 +14,9 @@ public class Item
 		this.type = type;
 	}
 
+	// items are considered the same if they 
+	// are of the same item type 
+	// e.g. cream == cream 
 	@Override
 	public boolean equals(Object other)
 	{
